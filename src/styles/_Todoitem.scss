@@ -1,0 +1,43 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #0070f3;
+  box-shadow: 0 7px 30px 0 rgba(0,116,244,0.39);
+  border-radius: 6px;
+  color: white;
+
+  margin: 5px 0;
+  padding: 5px;
+
+  height: 35px;
+  min-width: 200px;
+
+  input {
+    margin-right: 5px;
+  }
+
+  .remove-item {
+    background-color: #0070f3;
+    border: none;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 12px;
+
+    &:hover {
+      background-color: #0070f3;
+      opacity: 0.8;
+    }
+  }
+
+  &.completed {
+    p {
+      color: #d3d3d3;
+      text-decoration: line-through;
+    }
+  }
+}
