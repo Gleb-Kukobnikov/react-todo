@@ -1,31 +1,33 @@
+
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
+import About from './components/pages/About';
+import LinkButton from './components/LinkButton';
+
+import uuid from 'uuid';
+import Axios from 'axios';
 
 import './styles/App.scss';
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: 'Take out the trash',
-        completed: true
-      },
-      {
-        id: 2,
-        title: 'Make homework',
-        completed: false
-      },
-      {
-        id: 3,
-        title: 'Learn React',
-        completed: false
-      }
-    ]
+    todos: []
   };
 
-  markComplete = id => {
+  async componentDidMount() {
+      try {
+          const todos = await Axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10');
+
+          this.setState({ todos: todos.data});
+      } catch (e) {
+          console.error(e);
+      }
+  }
+
+    markComplete = id => {
       this.setState({ todos: this.state.todos.map(todo => {
             if (todo.id === id) {
                 todo.completed = !todo.completed;
@@ -37,7 +39,7 @@ class App extends Component {
 
   createItemByTitle = title => {
       return {
-          id: this.state.todos.length + 1,
+          id: uuid.v4(),
           title: title,
           completed: false
       };
@@ -57,12 +59,25 @@ class App extends Component {
 
   render() {
         return (
-            <div className="App">
-              <TodoForm addTodoItem = {this.addTodoItem} />
-              <Todos todos = {this.state.todos}
-                     markComplete = {this.markComplete}
-                     removeItem = {this.removeItem}/>
-            </div>
+            <Router>
+                <div className="App">
+                    <Route exact path="/" render={props => (
+                        <React.Fragment>
+                            <TodoForm addTodoItem = {this.addTodoItem} />
+                            <Todos todos = {this.state.todos}
+                                   markComplete = {this.markComplete}
+                                   removeItem = {this.removeItem}/>
+                            <LinkButton pagePath={'/about'} title={'About'}/>
+                        </React.Fragment>
+                    )}/>
+                    <Route exact path="/about" render={props => (
+                        <React.Fragment>
+                            <About />
+                            <LinkButton pagePath={'/'} title={'Home'} />
+                        </React.Fragment>
+                    )} />
+                </div>
+            </Router>
         );
   }
 }
