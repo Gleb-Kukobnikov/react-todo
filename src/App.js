@@ -27,13 +27,15 @@ class App extends Component {
       }
   }
 
-    markComplete = id => {
-      this.setState({ todos: this.state.todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed;
-            }
-            return todo;
-        })
+  markComplete = id => {
+      this.setState({
+          todos: this.state.todos.map(todo => {
+              if (todo.id === id) {
+                  todo.completed = !todo.completed;
+              }
+
+              return todo;
+          })
       });
   };
 
@@ -54,31 +56,31 @@ class App extends Component {
   };
 
   removeItem = id => {
-        this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+      this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
   };
 
   render() {
-        return (
-            <Router>
-                <div className="App">
-                    <Route exact path="/" render={props => (
-                        <React.Fragment>
-                            <TodoForm addTodoItem = {this.addTodoItem} />
-                            <Todos todos = {this.state.todos}
-                                   markComplete = {this.markComplete}
-                                   removeItem = {this.removeItem}/>
-                            <LinkButton pagePath={'/about'} title={'About'}/>
-                        </React.Fragment>
-                    )}/>
-                    <Route exact path="/about" render={props => (
-                        <React.Fragment>
-                            <About />
-                            <LinkButton pagePath={'/'} title={'Home'} />
-                        </React.Fragment>
-                    )} />
-                </div>
-            </Router>
-        );
+      return (
+          <Router>
+              <div className="App">
+                  <Route exact path="/" render={props => (
+                      <React.Fragment>
+                          <TodoForm addTodoItem = {this.addTodoItem} />
+                          <Todos todos = {this.state.todos}
+                                 markComplete = {this.markComplete}
+                                 removeItem = {this.removeItem}/>
+                          <LinkButton path={'/about'} title={'About'}/>
+                      </React.Fragment>
+                  )}/>
+                  <Route exact path="/about" render={props => (
+                      <React.Fragment>
+                          <About />
+                          <LinkButton path={'/'} title={'Home'} />
+                      </React.Fragment>
+                  )} />
+              </div>
+          </Router>
+      );
   }
 }
 

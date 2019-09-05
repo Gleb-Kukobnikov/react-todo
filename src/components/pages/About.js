@@ -3,12 +3,20 @@ import React from 'react';
 function About() {
     return (
         <React.Fragment>
-            <h1>
-                About
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores aut dolorum eos error, excepturi, explicabo hic illo in labore minus, modi neque possimus quaerat saepe sunt unde ut voluptatibus.
-            </p>
+            <div className={'about'}>
+                <h1>
+                    About
+                </h1>
+                <p>
+                    Simple todo React App with React-router and Axios.
+                </p>
+                <p>
+                    It takes todos from jsonplaceholder and render it.
+                </p>
+                <p>
+                    You can also add or remove your own todo.
+                </p>
+            </div>
         </React.Fragment>
     );
 }

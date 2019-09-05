@@ -12,10 +12,12 @@ class TodoItem extends Component {
         const { id, title } = this.props.todo;
 
         return (
-            <div className={'todo-item' + this.getCompletedStyle()}>
-                <input type="checkbox" checked={this.props.todo.completed} onChange={ this.props.markComplete.bind(this, id) }/>
+            <div className={'todo-item__wrapper' + this.getCompletedStyle()}>
+                <div className={'title__wrapper'}>
+                    <input type="checkbox" checked={this.props.todo.completed} onChange={ this.props.markComplete.bind(this, id) }/>
 
-                <p>{ title }</p>
+                    <p>{ title }</p>
+                </div>
 
                 <button className={'remove-item'} onClick={ this.props.removeItem.bind(this, id) }>x</button>
             </div>

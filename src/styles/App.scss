@@ -1,5 +1,6 @@
 @import "Todoitem";
 @import "TodoForm";
+@import "About";
 
 * {
   box-sizing: border-box;
@@ -48,6 +49,19 @@ body {
     &:hover {
       background-color: #0070f3;
       opacity: 0.8;
+    }
+  }
+
+  .link-button {
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+
+    > a {
+      text-align: center;
+      padding: 5px 30px;
+      border: 1px solid #0070f3;
+      border-radius: 3px;
     }
   }
 }

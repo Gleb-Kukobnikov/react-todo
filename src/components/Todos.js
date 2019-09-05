@@ -6,8 +6,8 @@ class Todos extends Component {
     render() {
         const { todos } = this.props;
 
-        const mapHeadingToList = list =>
-            list.map(
+        const mapTodos = () =>
+            todos.map(
                 todo =>
                     (<TodoItem key = { todo.id }
                                todo = {todo}
@@ -16,7 +16,7 @@ class Todos extends Component {
                     />)
             );
 
-        return <div className={'todo-list'}>{ mapHeadingToList(todos) }</div>;
+        return <div className={'todo-list'}>{ mapTodos(todos) }</div>;
     }
 }
 

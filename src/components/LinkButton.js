@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 class LinkButton extends Component {
     render() {
         return (
-            <div>
-                <Link to={this.props.pagePath}>
+            <div className={'link-button'}>
+                <Link to={this.props.path}>
                     {this.props.title}
                 </Link>
             </div>
@@ -15,7 +15,7 @@ class LinkButton extends Component {
 }
 
 LinkButton.propTypes = {
-    pagePath: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
 };
 
